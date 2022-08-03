@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Interview Class-3</title>
+    <style>
+        body{
+            background-color: rgb(255, 246, 246);
+        }
+        h1{
+            color: crimson;
+            text-decoration: underline;
+        }
+        span{
+            margin-left: 80px;
+        }
+        h1, h2, p{
+            font-style: italic;
+        }
+        h2{
+            color: darkslateblue;
+        }
+        p{
+            font-size: 22px;
+            font-weight: 500;
+        }
+        pre{
+            font-size: 20px;
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>JS Interview Class 3<span>@Priyanshi Sharma~</span></h1>
+    <h2>Q1. What is Callback Hell ?</h2>
+    <p>Callback hell runs code in asynchronous fashion.</p>
+    <p>It has a pyramid structure</p>
+    <p>It becomes difficult to handle the pyramid structure in case of lengthy codes.</p>
+    <p>Create a callback hell where it will print numbers from 1 to 5</p>
+    <pre>
+        
+    function printNumbers(){
+        setTimeout(() => {
+            console.log("1");
+            setTimeout(() => {
+                console.log("2");
+                setTimeout(() => {
+                    console.log("3");
+                    setTimeout(() => {
+                        console.log("4");
+                        setTimeout(() => {
+                            console.log("5");
+                        },5000);
+                    },4000);
+                },3000);
+            },2000);
+        },1000);
+    }
+    printNumbers();
+    </pre>
+    <h2>Q2. What are Promises and why do we use them ?</h2>
+    <p>Promises are used to avoid callback hell.</p>
+    <p>We can write clean code</p>
+    <p>It allows us to handle errors</p>
+    <p>It has 3 states-</p>
+    <ol>
+        <li>Pending</li>
+        <li>Resolve</li>
+        <li>Reject</li>
+    </ol>
+    <p>Create a promise to print vowels AEIOU after 65432 seconds</p>
+    <pre>
+        const printAlpha = (time,value) => {
+            return new Promise ((resolve,reject) => {
+                setTimeout(() => {
+                    console.log(value);
+                    resolve();
+                },time);
+            })
+        }
+        printAlpha(6000,"A")
+            .then(() => printAlpha(5000,"E"))
+            .then(() => printAlpha(4000,"I"))
+            .then(() => printAlpha(3000,"O"))
+            .then(() => printAlpha(2000,"U")) // multiple then blocks leads to promise chaining
+        
+        output- 
+        A, after 6sec
+        E, after 5sec
+        I, after 4sec
+        O, after 3sec
+        U, after 2sec
+    </pre>
+    <h2>Q3. What is promise chaining ?</h2>
+    <p>When a promise gets fulfilled the function is either resolved or reject</p>
+    <p>In case of resolve, .then()) method is called</p>
+    <p>In case of esject, .catch()) method is called</p>
+    <p>In the end, .finally() is used which concludes the promise</p>
+    <h2>Q4. What is the purpose of async/await keywords ?</h2>
+    <p>They are like brothers and sisters</p>
+    <p>Came into effect in ES-8 version</p>
+    <p>Used to make the code clean, code can be debugged easily</p>
+    <p>Async- needs to be returned before the starting of a function</p>
+    <p>Await always added when Async is used</p>
+    <h2>Q5. Give an example of async/await.</h2>
+    <pre>
+            const printAlpha = (time,value) => {
+                return new Promise ((resolve,reject) => {
+                    setTimeout(() => {
+                        console.log(value);
+                        resolve();
+                    },time);
+                })
+            }
+
+            async function newFunction(){
+                await printAlpha(6000,"A")
+                await printAlpha(5000,"E")
+                await printAlpha(4000,"I")
+                await printAlpha(3000,"O")
+                await printAlpha(2000,"U")
+            }
+            newFunction();            
+    </pre>
+    <h2>Q6. What is Hoisting ?</h2>
+    <p>var supports hoisting.</p>
+    <p>JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of functions, variables or classes to the top of their scope, prior to execution of the code.Hoisting allows functions to be safely used in code before they are declared.</p>
+    <h2>Q7. What is DOM ?</h2>
+    <p>DOM stands for Document Object Model</p>
+    <p>It follows a heirarchy through which we can access and manipulate the HTML elements of our choice, HTML is the root and inside that we have head and body</p>
+    <p>DOM Manipulation can be done by 4 ways-</p>
+    <ul>
+        <li>document.getElementById</li>
+        <li>document.getElementsByClassNames</li>
+        <li>document.getElementByTagName</li>
+        <li>document.querySelector</li>
+    </ul>
+    <h2>Q8. Difference between undefined vs not defined vs NaN</h2>
+    <h2>Q9. How many operators do we have in JS ?</h2>
+    <ol>
+        <li>Aithmetic Opertors</li>
+        <li>Assignment Opertors</li>
+        <li>Logical Opertors</li>
+        <li>Comparison Opertors</li>
+        <li>Bitwise Opertors</li>
+        <li>Relational Opertors</li>
+    </ol>
+    <h2>Q10. What are pure functions ?</h2>
+    <p>Pure functions return consistent results.</p>
+    <p>A Pure Function is a function (a block of code) that always returns the same result if the same arguments are passed. It does not depend on any state or data change during a program’s execution. Rather, it only depends on its input arguments.</p>
+    <pre>
+        function add(x,y){
+            console.log(x*y);
+        }
+        add(4,5);
+        add(10,11);        
+    </pre>
+    <h2>Q11. What are arrow functions?</h2>
+    <p>Introduced in ES-6 version</p>
+    <p>This is the most preferred way of writing functions</p>
+    <p>By this method, function expressions can be avoided</p>
+    <pre>(a, b) => a + b + 100;</pre>
+    <script src="index.js"></script>
+</body>
+</html>
